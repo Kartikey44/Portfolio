@@ -2,8 +2,8 @@ import { coding } from '../assets/data'
 
 function CodingProfile() {
   return (
-    <div className='text-white py-16 px-4'>
-      <div className='max-w-4xl mx-auto text-center space-y-12'>
+    <div className='text-white  py-16 px-4'>
+      <div className='max-w-6xl p-10 mx-auto text-center space-y-12'>
         <h2 className='text-4xl font-bold'>Coding Profile</h2>
         <div className='grid grid-cols-1 sm:grid-cols-2 gap-8'>
          {coding.map((items, index) => (

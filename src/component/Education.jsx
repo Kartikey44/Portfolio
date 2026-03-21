@@ -2,7 +2,7 @@ import { education } from '../assets/data'
 
 function Education() {
   return (
-    <div  className='flex flex-col text-white gap-10 max-w-5xl mx-auto'>
+    <div  className='flex flex-col text-white gap-10 mb-10 max-w-6xl mx-auto'>
       <h2 className='text-center font-bold text-3xl '>Education</h2>
       {education.map((edu, index) => (
         <div

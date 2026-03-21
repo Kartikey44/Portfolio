@@ -4,6 +4,9 @@ import javascript from '../assets/javascript.png'
 import tailwindcss from '../assets/tailwindcss.png'
 import react from '../assets/react.png'
 import node from '../assets/node.png'
+import setting from '../assets/setting.png'
+import ui from '../assets/ui.png'
+import web from '../assets/web.png'
 import express from '../assets/express.png'
 import mongodb from '../assets/mongo.png'
 import git from '../assets/git.png'
@@ -15,8 +18,25 @@ import Leetcode from '../assets/Leetcode.jpeg'
 import GeeksForGeeks from '../assets/GeeksForGeeks.png'
 import { LuGithub } from "react-icons/lu";
 import { FaLinkedinIn } from "react-icons/fa";
-import { MdOutlineMail } from "react-icons/md";
+import { MdDescription, MdOutlineMail } from "react-icons/md";
 
+export const work = [
+  {
+    name: "Web Development",
+    img:web,
+    Description:"I like building simple and functional web apps using the MERN stack."
+  },
+  {
+    name: "UI Development",
+    img:ui,
+    Description:"I enjoy creating clean and responsive interfaces with React and Tailwind."
+  },
+  {
+    name: "Backend & APIs",
+    img: setting,
+    Description:"Learning how to build servers and APIs with Node and Express."
+  }
+]
 export const socialLinks = [
   {
     icon: LuGithub,
@@ -31,26 +51,28 @@ export const socialLinks = [
     url: "https://mail.google.com/mail/?view=cm&fs=1&to=saraswatkartikey842@gmail.com",
   },
 ];
-export const profile = 
-  {
-    name: 'Kartikey Saraswat',
-    role: 'MERN Stack Development',
-    location: 'Greater Noida, Uttar Pradesh, India',
-    email: 'saraswatkartikey842@gmail.com',
-    phone: '+91-8307318486',
-    links: [
+export const profile =
+{
+  name: 'Kartikey Saraswat',
+  role: 'MERN Stack Development',
+  location: 'Greater Noida, Uttar Pradesh, India',
+  email: 'saraswatkartikey842@gmail.com',
+  phone: '+91-8307318486',
+  links: [
     { label: 'GitHub', url: 'https://github.com/Kartikey44' },
     { label: 'LinkedIn', url: 'https://www.linkedin.com/in/Kartikey444/' },
   ],
   profileImage: linkedinprofile,
-  summary: 'I’m a passionate developer with a focus on frontend development and a growing interest in data science.I build responsive web applications using modern technologies and enjoy solving real-world problems.'
+  tagline: "Building scalable SaaS applications with the MERN stack, combining clean design with efficient functionality.",
+  summary: 'I am a student developer with a strong interest in building modern web applications using the MERN stack. My focus lies in understanding how real-world applications are structured, from intuitive user interfaces to efficient backend systems.\n\nMost of my time is spent developing projects, exploring new technologies, and improving my problem-solving skills through practical implementation. I aim to write clean, maintainable code while continuously refining both design and functionality.\n\nWith a growing interest in full-stack development, the goal is to build scalable and user-focused SaaS applications that solve real problems. Consistent learning, experimentation, and hands-on development remain the core of my approach.'
 }
+
  export const frontend = [
   { name: "HTML5", img: html },
   { name: "CSS3", img: css },
   { name: "JavaScript", img: javascript },
   { name: "React", img: react },
-  {name:"Tailwind Css" ,img:tailwindcss}
+  { name:"Tailwind Css" ,img:tailwindcss}
 ]
 export const backend = [
   { name: "Node", img: node },
@@ -101,4 +123,26 @@ export const coding = [
     { label: 'GeeksForGeeks', url: 'https://www.geeksforgeeks.org/profile/kartikey444' }
     ]
   }
+]
+export const nav =[
+{ 
+    id: "#about",
+    label:"About"
+},
+{ 
+    id: "#skills",
+    label:"Skills"
+},
+{ 
+    id: "#services",
+    label:"Services"
+},
+{ 
+    id: "project",
+    label:"Projects"
+},
+{ 
+    id: "#contact",
+    label:"Contact"
+},
 ]

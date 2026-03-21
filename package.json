@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite && echo \"Live: https://portfolio-86p844nfv-saraswatkartikey842-4880s-projects.vercel.app/\"",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
