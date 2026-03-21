@@ -3,7 +3,7 @@ import { profile,frontend,backend } from '../assets/data'
 
 function About() {
   return (
-    <div className='max-w-7xl rounded-2xl mt-24 md:mt-32 shadow-xl mx-auto px-6 md:px-16 py-16 grid grid-cols-1 md:grid-cols-2 gap-10 bg-black/70 text-white'>
+    <div id="about" className='max-w-7xl rounded-2xl mt-24 md:mt-32 shadow-xl mx-auto px-6 md:px-16 py-16 grid scroll-mt-32 grid-cols-1 md:grid-cols-2 gap-10 bg-black/70 text-white'>
 
       {/* LEFT */}
       <div className='flex items-center justify-center'>

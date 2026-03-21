@@ -5,18 +5,17 @@ import {profile,socialLinks} from '../assets/data'
 function Hero() {
   return (
   <div
-  id="about"
+  id="hero"
   className="grid max-w-7xl mx-auto mt-24 md:mt-32 px-4 sm:px-6 md:px-16 gap-8 md:gap-12 
-             md:grid-cols-2 scroll-mt-32"
+             md:grid-cols-2 scroll-mt-50"
 >
   {/* LEFT CARD */}
-      <div className='flex flex-col gap-7 text-white'>
+      <div className='flex flex-col gap-5 text-white'>
 
         {/* STATUS */}
-        <span className=" items-center gap-2 text-xl rounded-full  text-[#8a8a8a] text-bold">
+        <span className=" items-center text-lg rounded-full text-[#8a8a8a] text-bold">
           Hi there , i'm
         </span>
-
         {/* NAME */}
         <div>
           <h1 className='text-4xl md:text-5xl font-bold text-gray-200'>
@@ -57,7 +56,7 @@ function Hero() {
         />
 
         <div className='text-center'>
-          <h1 className='font-semibold text-xl text-white'>Let's connect</h1>
+          <h1 className='font-semibold text-xl text-white'>Let's Connect</h1>
           <p className='text-gray-200 text-sm'>{profile.email}</p>
         </div>
 

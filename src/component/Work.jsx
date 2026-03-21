@@ -2,7 +2,7 @@ import React from 'react'
 import {work} from '../assets/data'
 function Work() {
   return (
-    <div className='max-w-screen  text-center '>
+    <div id="services" className='max-w-screen scroll-mt-32  text-center '>
       <h1 className='text-4xl font-bold mb-2'>What I Do</h1>
       <p className='text-gray-500 '>Areas I'm focusing on as a student developer </p>
     <div className='grid grid-cols-1 max-w-7xl py-6 gap-10 md:grid-cols-3 mx-auto'>
