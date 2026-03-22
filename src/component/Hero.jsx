@@ -14,7 +14,7 @@ function Hero() {
 
         {/* STATUS */}
         <span className=" items-center text-lg rounded-full text-[#8a8a8a] text-bold">
-          Hi there , i'm
+          Hi there , I'm
         </span>
         {/* NAME */}
         <div>
@@ -39,10 +39,12 @@ function Hero() {
             className='flex items-center gap-2 px-5 py-2 rounded-lg bg-white text-black font-medium hover:scale-105 transition'>
             Download Resume <FaCloudArrowDown />
           </a>
-
-          <button id="#projects" className='flex items-center gap-2 px-5 py-2 transition'>
+        <a href="#projects">
+         <button
+              className='flex cursor-pointer items-center gap-2 px-5 py-2  transition-all duration-300 ease-in-out hover:scale-110 hover:text-purple-400 transform-gpu'>
             View Projects <IoIosArrowDown />
-          </button>
+            </button>
+            </a>
         </div>
       </div>
    {/* RIGHT CONTENT */}

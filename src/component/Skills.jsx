@@ -3,7 +3,7 @@ import { frontend,backend,tools } from '../assets/data'
 
 function Skills() {
   return (
-    <div id="skills" className='text-white scroll-mt-10 text-center py-12'>
+    <div id="skills" className='text-white scroll-mt-20 text-center py-12'>
       
       <h1 className='text-3xl font-bold mb-2'>
         Technical Skills  </h1>

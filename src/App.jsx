@@ -7,16 +7,22 @@ import Education from './component/Education'
 import Work from './component/Work'
 import Footer from './component/Footer'
 import About from './component/About'
+import Projects from './component/Projects'
+import Contacts from './component/Contacts'
+import { Toaster } from 'react-hot-toast'
 function App() {
   return (
     <div className='bg-[#1a1a1a] text-[#a0a0a0] min-h-screen min-w-7xl pt-24'>
+      <Toaster/>
       <Navbar />
       <Hero />
       <About />
       <Skills />
-      <Work/>
+      <Work />
+      <Projects/>
       <CodingProfile />
-      <Education/>
+      <Education />
+      <Contacts/>
       <Footer/>
       
     </div>

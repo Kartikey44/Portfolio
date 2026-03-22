@@ -20,7 +20,7 @@ function Footer() {
             </div>
             <div className="border-t border-slate-200">
                 <div className="max-w-7xl mx-auto px-6 py-6 text-center text-sm font-normal">
-                    <a href="https://">Kartikey Saraswat</a> ©2026. All rights reserved.
+                    <span>©Kartikey Saraswat || Student developer.</span>
                 </div>
             </div>
         </footer>

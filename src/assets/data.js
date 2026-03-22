@@ -4,6 +4,10 @@ import javascript from '../assets/javascript.png'
 import tailwindcss from '../assets/tailwindcss.png'
 import react from '../assets/react.png'
 import node from '../assets/node.png'
+import { FaArrowUpRightFromSquare } from "react-icons/fa6";
+import { LuGithub } from 'react-icons/lu'
+import quickchat from '../assets/quickchat.png'
+import socketio from '../assets/socketio.png'
 import setting from '../assets/setting.png'
 import ui from '../assets/ui.png'
 import web from '../assets/web.png'
@@ -16,7 +20,6 @@ import postman from '../assets/postman.png'
 import linkedinprofile from '../assets/linkedinProfile.jpeg'
 import Leetcode from '../assets/Leetcode.jpeg'
 import GeeksForGeeks from '../assets/GeeksForGeeks.png'
-import { LuGithub } from "react-icons/lu";
 import { FaLinkedinIn } from "react-icons/fa";
 import { MdDescription, MdOutlineMail } from "react-icons/md";
 
@@ -138,11 +141,26 @@ export const nav =[
     label:"Services"
 },
 { 
-    id: "project",
+    id: "#projects",
     label:"Projects"
 },
 { 
     id: "#contact",
     label:"Contact"
 },
+]
+export const projects = [
+  {
+    name: "QuickChat",
+    photo: quickchat,
+    role: "Real-Time Messaging Platform with AI Assistant",
+    Description: "QuickChat is a real-time messaging platform designed for seamless and instant communication. It enables users to send and receive messages with low latency using modern web technologies like WebSockets.",
+    img:[
+      react,tailwindcss,node,express,mongodb,socketio
+    ],
+    links:
+    [ { label:"Demo" ,url:"https://quick-chat-tawny-eta.vercel.app/", icon:FaArrowUpRightFromSquare},
+      {label:"github",url:"https://github.com/Kartikey44/QuickChat", icon:LuGithub}
+    ]
+  },
 ]
