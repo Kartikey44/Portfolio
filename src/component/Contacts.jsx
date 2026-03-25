@@ -28,14 +28,14 @@ function Contacts() {
   toast.success("Message sent successfully!");
   setForm({ name: "", email: "", message: "" });
 })
-.catch(() => {
+.catch((err) => {
+  console.log("EmailJS Error:", err);
   toast.error("Failed to send message");
 });
- 
 };
 
   return (
-    <div id="contact" className='max-w-xl mx-auto scroll-mt-32'>
+    <div id="contact" className='max-w-xl   px-5 mx-auto scroll-mt-32'>
       <div className='grid w-full grid-cols-1 gap-10'>
       <div className='flex flex-col text-center  gap-1 max-w-120 mx-auto'>
         <h1 className='text-4xl text-white font-bold'>
@@ -49,6 +49,7 @@ function Contacts() {
             <input
               type="text"
               name='name'
+              value={form.name}
               onChange={handleChange}
               placeholder='Your name'
               className='border rounded-lg py-2  border-white/20 px-8' />
@@ -58,6 +59,7 @@ function Contacts() {
             <input
               className='border rounded-lg py-2  border-white/20 px-8'
               name='email'
+              value={form.email}
               type="email"
               onChange={handleChange}
               placeholder='your@email.com' />
@@ -67,6 +69,7 @@ function Contacts() {
             <textarea
               name='message'
               rows={5}
+              value={form.message}
               onChange={handleChange}
               placeholder='Type your message'
               className='border rounded-lg py-2 border-white/20 px-8'

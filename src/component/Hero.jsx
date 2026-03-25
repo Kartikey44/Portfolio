@@ -49,7 +49,7 @@ function Hero() {
       </div>
    {/* RIGHT CONTENT */}
   <div
-    className="w-full max-w-md md:max-w-xl mx-auto min-h-75 sm:min-h-87.5 md:min-h-100 rounded-2xl p-5 sm:p-6 md:p-8 flex flex-col items-center justify-center gap-4 transition duration-300 shadow-[0_0_20px_rgba(255,255,255,0.2)] pb-24"
+    className="w-full max-w-md max-w-xl mx-auto min-h-75 sm:min-h-87.5 md:min-h-100 rounded-2xl p-5 sm:p-6 md:p-8 flex flex-col items-center justify-center gap-4 transition duration-300 shadow-[0_0_20px_rgba(255,255,255,0.2)] pb-24"
   >
         <img 
           src={profile.profileImage} 

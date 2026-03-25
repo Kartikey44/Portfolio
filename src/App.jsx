@@ -12,7 +12,7 @@ import Contacts from './component/Contacts'
 import { Toaster } from 'react-hot-toast'
 function App() {
   return (
-    <div className='bg-[#1a1a1a] text-[#a0a0a0] min-h-screen min-w-7xl pt-24'>
+    <div className='bg-[#1a1a1a] text-[#a0a0a0] min-h-screen max-w-screen pt-24'>
       <Toaster/>
       <Navbar />
       <Hero />

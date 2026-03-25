@@ -3,14 +3,14 @@ import { frontend,backend,tools } from '../assets/data'
 
 function Skills() {
   return (
-    <div id="skills" className='text-white scroll-mt-20 text-center py-12'>
+    <div id="skills" className='text-white scroll-mt-20 text-center px-5 py-12'>
       
       <h1 className='text-3xl font-bold mb-2'>
         Technical Skills  </h1>
       <p className='text-md mb-8 text-[#6a6a6b]'>Technologies and tools I've been working with</p>
     
         <h2 className=' text-2xl font-semibold'>Frontend</h2>
-      <div className="grid grid-cols-2 sm:grid-cols-5 gap-6 max-w-7xl mb-10 mt-3 mx-auto">
+      <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5  gap-6 max-w-7xl mb-10 mt-3 mx-auto">
         {frontend.map((skill, index) => (
           <div 
             key={index} 
