@@ -6,11 +6,11 @@ function Hero() {
   return (
   <div
   id="hero"
-  className="grid max-w-7xl mx-auto mt-24 md:mt-32 px-4 sm:px-6 md:px-16 gap-8 md:gap-12 
+  className="grid max-w-7xl mx-auto md:mt-32 px-4 sm:px-6 md:px-16 gap-8 md:gap-12 
              md:grid-cols-2 scroll-mt-50"
 >
   {/* LEFT CARD */}
-      <div className='flex flex-col gap-5 text-white'>
+      <div className='flex flex-col md:gap-5 gap-2 text-white'>
 
         {/* STATUS */}
         <span className=" items-center text-lg rounded-full text-[#8a8a8a] text-bold">
@@ -49,17 +49,17 @@ function Hero() {
       </div>
    {/* RIGHT CONTENT */}
   <div
-    className="w-full max-w-md max-w-xl mx-auto min-h-75 sm:min-h-87.5 md:min-h-100 rounded-2xl p-5 sm:p-6 md:p-8 flex flex-col items-center justify-center gap-4 transition duration-300 shadow-[0_0_20px_rgba(255,255,255,0.2)] pb-24"
+    className="w-full max-w-xl mx-auto min-h-75 sm:min-h-87.5 md:min-h-100 rounded-2xl p-5 sm:p-6 md:p-8 flex flex-col items-center justify-center gap-4 transition duration-300 shadow-[0_0_20px_rgba(255,255,255,0.2)] pb-24"
   >
         <img 
           src={profile.profileImage} 
-          className="h-60 w-60 object-cover rounded-full 
+          className="h-40 w-40 md:h-60 md:w-60 object-cover rounded-full 
                      shadow-[0_0_10px_rgba(255,255,255,0.2) shadow-xl]"
         />
 
-        <div className='text-center'>
+        <div className='text-center flex flex-col gap-3'>
           <h1 className='font-semibold text-xl text-white'>Let's Connect</h1>
-          <p className='text-gray-200 text-sm'>{profile.email}</p>
+          <p className='text-gray-200 text-sm mb-1'>{profile.email}</p>
         </div>
 
         {/* ICONS */}
@@ -68,7 +68,7 @@ function Hero() {
     const Icon = item.icon;
     return (
       <a key={index} href={item.url} target="_blank" rel="noopener noreferrer">
-        <Icon className='text-white hover:scale-110 transition' size={20} />
+        <Icon className='text-white hover:scale-110 transition' size={30} md:size={20} />
       </a>
     );
   })}
