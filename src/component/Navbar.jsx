@@ -15,7 +15,7 @@ function Navbar() {
               onClick={(e) => {
     e.preventDefault();
     setTimeout(() => {
-      document.querySelector(nav.id)?.({
+      document.querySelector(nav.id)?.scrollIntoView({
         behavior: "smooth",
       });
     }, 300); 

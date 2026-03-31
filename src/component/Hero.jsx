@@ -41,7 +41,7 @@ function Hero() {
           </a>
         <a href="#projects">
          <button
-              className='flex cursor-pointer items-center gap-2 px-5 py-2  transition-all duration-300 ease-in-out hover:scale-110 hover:text-purple-400 transform-gpu'>
+              className='hidden md:flex cursor-pointer items-center gap-2 px-5 py-2  transition-all duration-300 ease-in-out hover:scale-110 hover:text-purple-400 transform-gpu'>
             View Projects <IoIosArrowDown />
             </button>
             </a>
