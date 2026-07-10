@@ -1,29 +1,101 @@
-import {profile,socialLinks} from './../assets/data'
+import { profile, socialLinks, nav } from "../assets/data";
+
 function Footer() {
-    return (
-        <footer className="w-full  bg-linear-to-tl from-[#3a3a3a] to-[#0a01a0a]  ">
-            <div className="max-w-7xl mx-auto px-6 py-16 flex flex-col items-center">
-                <div className="flex items-center space-x-3 bg-linear-to-tl text-4xl bg-clip-text font-bold from-[#ea3232] to-[#790b0b] mb-2 text-transparent">
-                {profile.name}
-                </div>
-                <p className='mb-6'>{profile.role} || Full Stack Engineer</p>
-                <div className="flex justify-between text-sm font-normal gap-10 ">
-                   {socialLinks.map((item, index) => {
-                       const Icon = item.icon;
-                       return (
-                         <a key={index} href={item.url} target="_blank" rel="noopener noreferrer">
-                           <Icon className='text-white rounded-2xl hover:scale-110 bg-[#0a0a0a] p-4 transition' size={50} />
-                         </a>
-                       );
-                   })}
-                </div>
+  return (
+    <footer className="relative mt-24 overflow-hidden border-t border-white/10">
+      {/* Background Glow */}
+      <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-96 h-96 rounded-full bg-purple-600/20 blur-3xl" />
+
+      <div className="relative max-w-7xl mx-auto px-6 py-16">
+        <div className="grid md:grid-cols-3 gap-12">
+          {/* Left */}
+          <div>
+            <h2
+              className="text-3xl font-bold
+              bg-gradient-to-r
+              from-purple-500
+              via-pink-500
+              to-cyan-400
+              bg-clip-text
+              text-transparent"
+            >
+              {profile.name}
+            </h2>
+
+            <p className="mt-4 text-gray-400 leading-7">{profile.tagline}</p>
+          </div>
+
+          {/* Center */}
+          <div>
+            <h3 className="font-semibold text-xl mb-5">Quick Links</h3>
+
+            <div className="flex flex-col gap-3">
+              {nav.map((item, index) => (
+                <a
+                  key={index}
+                  href={item.id}
+                  className="text-gray-400 hover:text-purple-400 transition"
+                >
+                  {item.label}
+                </a>
+              ))}
             </div>
-            <div className="border-t border-slate-200">
-                <div className="max-w-7xl mx-auto px-6 py-6 text-center text-sm font-normal">
-                    <span>©Kartikey Saraswat || Student developer.</span>
-                </div>
+          </div>
+
+          {/* Right */}
+          <div>
+            <h3 className="font-semibold text-xl mb-5">Connect</h3>
+
+            <p className="text-gray-400">{profile.email}</p>
+
+            <p className="text-gray-400 mt-2">{profile.location}</p>
+
+            <div className="flex gap-4 mt-6">
+              {socialLinks.map((item, index) => {
+                const Icon = item.icon;
+
+                return (
+                  <a
+                    key={index}
+                    href={item.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-12 h-12
+                    rounded-xl
+                    bg-white/5
+                    border border-white/10
+                    flex items-center justify-center
+                    hover:bg-purple-600
+                    hover:scale-110
+                    transition-all"
+                  >
+                    <Icon size={20} />
+                  </a>
+                );
+              })}
             </div>
-        </footer>
-    );
-};
+          </div>
+        </div>
+
+        {/* Bottom */}
+        <div
+          className="mt-12 pt-6
+          border-t border-white/10
+          flex flex-col md:flex-row
+          justify-between
+          items-center
+          gap-3
+          text-sm text-gray-400"
+        >
+          <p>
+            © {new Date().getFullYear()} {profile.name}. All Rights Reserved.
+          </p>
+
+          <p>Built with ❤️ using React & Tailwind CSS</p>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
 export default Footer;
