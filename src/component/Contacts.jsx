@@ -47,7 +47,7 @@ function Contacts() {
   return (
     <section
       id="contact"
-      className="section py-20 px-5 md:px-8 scroll-mt-32 overflow-hidden"
+      className="section py-20 px-5 md:px-8 scroll-mt-12 overflow-hidden"
     >
       <div className="container relative">
         {/* Background Glow */}

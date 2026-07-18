@@ -129,20 +129,28 @@ export const nav = [
     label: "About",
   },
   {
+    id: "#services",
+    label: "Services",
+  },
+  {
     id: "#skills",
     label: "Skills",
   },
   {
-    id: "#services",
-    label: "Services",
+    id: "#certifications",
+    label: "Certifications",
   },
   {
     id: "#projects",
     label: "Projects",
   },
   {
-    id: "#certifications",
-    label: "Certifications",
+    id: "#coding",
+    label: "Coding Profile"
+  },
+  {
+    id: "#education",
+    label: "Education"
   },
   {
     id: "#contact",
@@ -232,7 +240,7 @@ export const education = [
     college: "Galgotias College of Engineering & Technology",
     year: "2023 - 2027",
     location: "Greater Noida, Uttar Pradesh",
-    score: "7.5 CGPA",
+    score: "7.36 CGPA",
   },
   {
     degree: "Senior Secondary (Class XII)",

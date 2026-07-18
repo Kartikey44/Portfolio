@@ -22,7 +22,7 @@ function Skills() {
   ];
 
   return (
-    <section id="skills" className="section py-20 px-5 md:px-8 scroll-mt-32">
+    <section id="skills" className="section py-20 px-5 md:px-8 scroll-mt-20">
       <div className="container">
         {/* Heading */}
         <div className="text-center mb-14">

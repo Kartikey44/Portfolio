@@ -4,7 +4,7 @@ import { FaArrowUpRightFromSquare } from "react-icons/fa6";
 
 function CodingProfile() {
   return (
-    <section id="coding" className="section py-20 px-5 md:px-8 scroll-mt-32">
+    <section id="coding" className="section py-20 px-5 md:px-8 scroll-mt-12">
       <div className="container">
         {/* Heading */}
         <div className="text-center mb-14">

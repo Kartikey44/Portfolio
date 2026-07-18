@@ -4,7 +4,7 @@ import { FaGraduationCap } from "react-icons/fa";
 
 function Education() {
   return (
-    <section id="education" className="section py-20 px-5 md:px-8 scroll-mt-32">
+    <section id="education" className="section py-20 px-5 md:px-8 scroll-mt-12">
       <div className="container">
         {/* Heading */}
         <div className="text-center mb-14">

@@ -7,7 +7,7 @@ function Certification() {
   return (
     <section
       id="certifications"
-      className="section container px-5 py-20 scroll-mt-32"
+      className="section container px-5 py-20 scroll-mt-10"
     >
       {/* Heading */}
       <div className="text-center mb-14">

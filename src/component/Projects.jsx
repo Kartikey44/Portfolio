@@ -27,7 +27,7 @@ function Projects() {
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, amount: 0.15 }}
       transition={{ duration: 0.7 }}
-      className="section py-24 scroll-mt-28"
+      className="section py-20 scroll-mt-5"
     >
       <div className="container">
 
