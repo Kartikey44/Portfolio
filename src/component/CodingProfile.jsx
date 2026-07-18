@@ -4,97 +4,143 @@ import { FaArrowUpRightFromSquare } from "react-icons/fa6";
 
 function CodingProfile() {
   return (
-    <section className="py-20 px-5 text-white">
-      <div className="max-w-6xl mx-auto">
+    <section id="coding" className="section py-20 px-5 md:px-8 scroll-mt-32">
+      <div className="container">
         {/* Heading */}
         <div className="text-center mb-14">
-          <h2 className="text-4xl md:text-5xl font-bold">Coding Profiles</h2>
+          <h2 className="heading">Coding Profiles</h2>
 
-          <p className="text-gray-400 mt-3">
+          <p className="paragraph mt-3">
             Practicing Data Structures & Algorithms regularly.
           </p>
         </div>
 
         {/* Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {coding.map((item, index) => (
             <motion.a
               key={index}
               href={item.links[0].url}
               target="_blank"
               rel="noopener noreferrer"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{
+                duration: 0.5,
+                delay: index * 0.15,
+              }}
               whileHover={{
-                y: -10,
-                scale: 1.03,
+                y: -8,
+                scale: 1.02,
               }}
               whileTap={{
-                scale: 0.97,
+                scale: 0.98,
               }}
-              className="group relative overflow-hidden
-              rounded-3xl
-              border border-white/10
-              bg-white/5
-              backdrop-blur-xl
-              p-8"
+              className="card group relative overflow-hidden rounded-3xl p-5 md:p-8"
             >
-              {/* Glow */}
+              {/* Hover Glow */}
               <div
-                className="absolute inset-0
-                opacity-0
-                group-hover:opacity-100
-                transition duration-500
-                bg-gradient-to-r
-                from-purple-600/20
-                via-pink-500/20
-                to-cyan-500/20"
+                className="
+                  absolute inset-0
+                  opacity-0
+                  group-hover:opacity-100
+                  transition-all duration-500
+                  bg-gradient-to-r
+                  from-purple-600/10
+                  via-pink-500/10
+                  to-cyan-500/10
+                "
               />
 
-              <div className="relative flex items-center gap-6">
+              <div className="relative flex flex-col sm:flex-row items-center sm:items-start gap-5">
                 {/* Logo */}
                 <div
-                  className="w-20 h-20
-                  rounded-2xl
-                  bg-white
-                  flex items-center justify-center
-                  overflow-hidden"
+                  className="
+                    w-16 h-16
+                    md:w-20 md:h-20
+                    rounded-2xl
+                    bg-white
+                    dark:bg-gray-100
+                    flex
+                    items-center
+                    justify-center
+                    shadow-md
+                    flex-shrink-0
+                  "
                 >
                   <img
                     src={item.img}
                     alt={item.name}
-                    className="w-14 h-14 object-contain"
+                    className="w-10 h-10 md:w-14 md:h-14 object-contain"
                   />
                 </div>
 
                 {/* Details */}
-                <div className="flex-1 text-left">
+                <div className="flex-1 text-center sm:text-left">
                   <h3
-                    className="text-2xl font-bold
-                    group-hover:text-purple-400
-                    transition"
+                    className="
+                      text-xl
+                      md:text-2xl
+                      font-bold
+                      text-gray-900
+                      dark:text-white
+                      group-hover:text-purple-500
+                      dark:group-hover:text-purple-400
+                      transition-colors
+                    "
                   >
                     {item.name}
                   </h3>
 
-                  <p className="text-gray-400 mt-1">@{item.username}</p>
+                  <p className="paragraph mt-2 text-sm md:text-base">
+                    @{item.username}
+                  </p>
 
                   <div
-                    className="inline-block
-                    mt-3
-                    px-3 py-1
-                    rounded-full
-                    bg-purple-500/10
-                    text-purple-300
-                    text-sm"
+                    className="
+                      inline-block
+                      mt-4
+                      px-4
+                      py-2
+                      rounded-full
+                      bg-purple-500/10
+                      text-purple-600
+                      dark:text-purple-300
+                      text-sm
+                      font-medium
+                    "
                   >
                     {item.stats}
                   </div>
                 </div>
 
                 {/* Arrow */}
+                <div className="hidden sm:flex items-center">
+                  <FaArrowUpRightFromSquare
+                    className="
+                      text-xl
+                      md:text-2xl
+                      text-gray-700
+                      dark:text-white
+                      group-hover:text-purple-500
+                      dark:group-hover:text-purple-400
+                      group-hover:rotate-45
+                      transition-all duration-300
+                    "
+                  />
+                </div>
+              </div>
+
+              {/* Mobile Arrow */}
+              <div className="flex sm:hidden justify-center mt-5">
                 <FaArrowUpRightFromSquare
-                  className="text-2xl
-                  group-hover:rotate-45
-                  transition duration-300"
+                  className="
+                    text-xl
+                    text-purple-500
+                    group-hover:rotate-45
+                    transition-all duration-300
+                  "
                 />
               </div>
             </motion.a>

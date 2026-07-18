@@ -4,84 +4,122 @@ import { FaGraduationCap } from "react-icons/fa";
 
 function Education() {
   return (
-    <section className="max-w-6xl mx-auto px-5 py-20 text-white">
-      {/* Heading */}
-      <div className="text-center mb-14">
-        <h2 className="text-4xl md:text-5xl font-bold">Education</h2>
+    <section id="education" className="section py-20 px-5 md:px-8 scroll-mt-32">
+      <div className="container">
+        {/* Heading */}
+        <div className="text-center mb-14">
+          <h2 className="heading">Education</h2>
+          <p className="paragraph mt-3">My academic journey.</p>
+        </div>
 
-        <p className="text-gray-400 mt-3">My academic journey.</p>
-      </div>
-
-      <div className="relative">
-        {/* Timeline */}
-        <div
-          className="absolute left-5 md:left-1/2 top-0 bottom-0 w-[3px]
-        -translate-x-1/2
-        bg-gradient-to-b
-        from-purple-600
-        via-fuchsia-500
-        to-pink-500"
-        />
-
-        {education.map((edu, index) => (
-          <motion.div
-            key={index}
-            initial={{
-              opacity: 0,
-              x: index % 2 === 0 ? -60 : 60,
-            }}
-            whileInView={{
-              opacity: 1,
-              x: 0,
-            }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className={`relative mb-12 flex
-            ${index % 2 === 0 ? "md:justify-start" : "md:justify-end"}`}
-          >
-            {/* Timeline Dot */}
-            <div
-              className="absolute left-5 md:left-1/2
+        <div className="relative">
+          {/* Timeline */}
+          <div
+            className="
+              absolute
+              left-5
+              md:left-1/2
+              top-0
+              bottom-0
+              w-[3px]
               -translate-x-1/2
-              w-12 h-12
-              rounded-full
-              bg-gradient-to-r
+              bg-gradient-to-b
               from-purple-600
+              via-fuchsia-500
               to-pink-500
-              flex items-center justify-center
-              shadow-lg"
+            "
+          />
+
+          {education.map((edu, index) => (
+            <motion.div
+              key={index}
+              initial={{
+                opacity: 0,
+                y: 40,
+              }}
+              whileInView={{
+                opacity: 1,
+                y: 0,
+              }}
+              viewport={{ once: true }}
+              transition={{
+                duration: 0.5,
+                delay: index * 0.15,
+              }}
+              className={`relative mb-12 flex ${
+                index % 2 === 0 ? "md:justify-start" : "md:justify-end"
+              }`}
             >
-              <FaGraduationCap />
-            </div>
-
-            {/* Card */}
-            <div
-              className="ml-20 md:ml-0
-              md:w-[45%]
-              rounded-3xl
-              bg-white/5
-              backdrop-blur-xl
-              border border-white/10
-              p-6
-              hover:border-purple-500/40
-              transition"
-            >
-              <h3 className="text-2xl font-semibold">{edu.degree}</h3>
-
-              <p className="text-purple-400 mt-2">{edu.college}</p>
-
-              <p className="text-gray-400 mt-1">{edu.location}</p>
-
-              <div className="flex justify-between mt-6">
-                <span className="text-gray-300">{edu.year}</span>
-
-                <span className="font-semibold text-green-400">
-                  {edu.score}
-                </span>
+              {/* Timeline Icon */}
+              <div
+                className="
+                  absolute
+                  left-5
+                  md:left-1/2
+                  -translate-x-1/2
+                  w-10
+                  h-10
+                  md:w-12
+                  md:h-12
+                  rounded-full
+                  bg-gradient-to-r
+                  from-purple-600
+                  to-pink-500
+                  flex
+                  items-center
+                  justify-center
+                  shadow-lg
+                  text-white
+                  z-10
+                "
+              >
+                <FaGraduationCap />
               </div>
-            </div>
-          </motion.div>
-        ))}
+
+              {/* Card */}
+              <motion.div
+                whileHover={{
+                  y: -6,
+                }}
+                className="
+                  card
+                  ml-16
+                  md:ml-0
+                  w-[calc(100%-4rem)]
+                  md:w-[45%]
+                  rounded-3xl
+                  p-5
+                  md:p-6
+                  hover:border-purple-500/40
+                  transition-all
+                  duration-300
+                "
+              >
+                <h3 className="text-xl md:text-2xl font-semibold text-gray-900 dark:text-white">
+                  {edu.degree}
+                </h3>
+
+                <p className="mt-2 text-sm md:text-base text-purple-500 dark:text-purple-400">
+                  {edu.college}
+                </p>
+
+                <p className="paragraph mt-2 text-sm md:text-base">
+                  {edu.location}
+                </p>
+
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 mt-6">
+                  <span className="text-sm md:text-base text-gray-700 dark:text-gray-300">
+                    {edu.year}
+                  </span>
+
+                  <span className="font-semibold text-green-500 dark:text-green-400">
+                    {edu.score}
+                  </span>
+                </div>
+              </motion.div>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );

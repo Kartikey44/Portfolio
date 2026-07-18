@@ -1,106 +1,118 @@
-import React,{useState} from 'react'
-import {nav} from '../assets/data'
-import { RxHamburgerMenu } from "react-icons/rx";
-import { RxCross1 } from "react-icons/rx";
+import React, { useState } from "react";
+import { nav } from "../assets/data";
+import { RxHamburgerMenu, RxCross1 } from "react-icons/rx";
+import { MdDarkMode, MdLightMode } from "react-icons/md";
+import { useTheme } from "../context/ThemeContext";
+
 function Navbar() {
   const [open, setOpen] = useState(false);
-  return (
-    <div className="flex justify-center items-center">
-      <section
-        className="fixed top-5 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-7xl rounded-xl backdrop-blur-2xl px-6 py-4 flex justify-between items-center transition-all duration-300
-"
-      >
-        <a
-          href="#hero"
-          className=" text-3xl font-extrabold bg-gradient-to-r from-purple-500 to-purple-700 bg-clip-text text-transparent hover:scale-105 transition"        >
-          Kartikey.
-        </a>
-        <div className="hidden md:flex items-center justify-center gap-8">
-          {nav.map((nav, id) => (
-            <a
-              href={nav.id}
-              key={id}
-              onClick={(e) => {
-                e.preventDefault();
-                setTimeout(() => {
-                  document.querySelector(nav.id)?.scrollIntoView({
-                    behavior: "smooth",
-                  });
-                }, 300);
-              }}
-              className="
-relative
-group
-text-gray-300
-hover:text-white
-transition
-"
-            >
-              {nav.label}
-            </a>
-          ))}
-        </div>
+  const { dark, setDark } = useTheme();
 
-        <div
-          onClick={() => setOpen(!open)}
-          className="md:hidden z-50 relative "
-        >
-          {!open ? <RxHamburgerMenu size={30} /> : <RxCross1 size={30} />}
+  const handleScroll = (id) => {
+    setOpen(false);
+
+    setTimeout(() => {
+      document.querySelector(id)?.scrollIntoView({
+        behavior: "smooth",
+      });
+    }, 250);
+  };
+
+  return (
+    <>
+      {/* Navbar */}
+      <section className="glass fixed top-5 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-7xl rounded-2xl px-6 py-4">
+        <div className="flex items-center justify-between">
+          {/* Logo */}
+          <a
+            href="#hero"
+            className="text-3xl font-extrabold bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent"
+          >
+            Kartikey.
+          </a>
+
+          {/* Desktop Menu */}
+          <div className="hidden md:flex items-center gap-8">
+            {nav.map((item, index) => (
+              <a
+                key={index}
+                href={item.id}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleScroll(item.id);
+                }}
+                className="nav-link group"
+              >
+                {item.label}
+
+                <span className="absolute left-0 -bottom-1 h-[2px] w-0 bg-gradient-to-r from-purple-500 to-pink-500 transition-all duration-300 group-hover:w-full" />
+              </a>
+            ))}
+          </div>
+
+          {/* Right Side */}
+          <div className="flex items-center gap-3">
+            {/* Theme Toggle */}
+            <button
+              onClick={() => setDark(!dark)}
+              className="h-10 w-10 rounded-full flex items-center justify-center bg-gray-200 dark:bg-gray-800 hover:scale-110 transition-all"
+            >
+              {dark ? (
+                <MdLightMode size={22} className="text-yellow-400" />
+              ) : (
+                <MdDarkMode size={22} className="text-gray-800" />
+              )}
+            </button>
+
+            {/* Mobile Menu */}
+            <button onClick={() => setOpen(!open)} className="md:hidden">
+              {open ? (
+                <RxCross1 size={28} className="text-gray-900 dark:text-white" />
+              ) : (
+                <RxHamburgerMenu
+                  size={30}
+                  className="text-gray-900 dark:text-white"
+                />
+              )}
+            </button>
+          </div>
         </div>
       </section>
+
+      {/* Overlay */}
       <div
         onClick={() => setOpen(false)}
-        className={`fixed inset-0 bg-black/50 transition-opacity duration-300 z-30
-      ${open ? "opacity-100 visible" : "opacity-0 invisible"}`}
+        className={`fixed inset-0 bg-black/40 backdrop-blur-sm transition-all duration-300 z-40 ${
+          open ? "opacity-100 visible" : "opacity-0 invisible"
+        }`}
       >
+        {/* Mobile Menu */}
         <div
           onClick={(e) => e.stopPropagation()}
-          className={`fixed top-0 left-0 w-full text-white rounded-b-2xl shadow-xl z-40
-          bg-[linear-gradient(to_bottom,#374151EE,#111827EE)] backdrop-blur-md
-          transform transition-all duration-300 ease-in-out
-            ${open ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0 pointer-events-none"}`}
+          className={`glass fixed top-0 left-0 w-full rounded-b-3xl shadow-xl transition-all duration-300 ${
+            open ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
+          }`}
         >
-          <ul className="flex mt-16 flex-col gap-6 items-center p-10 justify-center">
-            {nav.map((nav, id) => (
-              <li key={id}>
+          <ul className="flex flex-col items-center gap-8 py-20">
+            {nav.map((item, index) => (
+              <li key={index}>
                 <a
-                  href={nav.id}
+                  href={item.id}
                   onClick={(e) => {
                     e.preventDefault();
-
-                    setOpen(false);
-
-                    setTimeout(() => {
-                      document.querySelector(nav.id)?.scrollIntoView({
-                        behavior: "smooth",
-                      });
-                    }, 300);
+                    handleScroll(item.id);
                   }}
-                  className="cursor-pointer text-lg transition-all duration-200 ease-in-out hover:translate-x-2 hover:text-gray-300 "
+                  className="text-lg font-medium text-gray-700 dark:text-white hover:text-purple-500 transition"
                 >
-                  <span
-                    className="
-absolute
-left-0
--bottom-1
-h-[2px]
-w-0
-bg-gradient-to-r
-from-purple-500
-to-pink-500
-transition-all
-duration-300
-group-hover:w-full"
-                  />
-                  {nav.label}
+                  {item.label}
                 </a>
               </li>
             ))}
           </ul>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
-export default Navbar
+export default Navbar;

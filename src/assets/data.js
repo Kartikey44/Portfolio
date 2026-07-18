@@ -253,7 +253,7 @@ export const coding = [
     name: "LeetCode",
     img: Leetcode,
     username: "kartikey44",
-    stats: "450+ Problems Solved",
+    stats: "100+ Problems Solved",
     links: [
       {
         label: "Visit Profile",
@@ -293,6 +293,18 @@ export const experience = [
       "Socket.IO",
       "Tailwind CSS",
     ],
+  },
+];
+// Certifications
+export const certifications = [
+  {
+    title: "Introduction to MERN Stack",
+    organization: "Simplilearn",
+    year: "2025",
+    description:
+      "Completed a foundational certification covering MongoDB, Express.js, React.js, and Node.js for full-stack web application development.",
+    credential: "#", // Replace with your certificate verification link
+    image: "/certificates/simplilearn.png", // Optional
   },
 ];
 export const projects = [

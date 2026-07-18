@@ -22,84 +22,88 @@ function Skills() {
   ];
 
   return (
-    <section
-      id="skills"
-      className="max-w-7xl mx-auto px-5 py-20 scroll-mt-28 text-white"
-    >
-      {/* Heading */}
-      <div className="text-center mb-16">
-        <h1 className="text-4xl md:text-5xl font-bold">Technical Skills</h1>
+    <section id="skills" className="section py-20 px-5 md:px-8 scroll-mt-32">
+      <div className="container">
+        {/* Heading */}
+        <div className="text-center mb-14">
+          <h2 className="heading">Technical Skills</h2>
 
-        <p className="text-gray-400 mt-4">
-          Technologies and tools I use to build modern web applications.
-        </p>
-      </div>
-
-      {skillSections.map((section, sectionIndex) => (
-        <div key={sectionIndex} className="mb-14">
-          {/* Section Heading */}
-          <div className="flex items-center gap-4 mb-8">
-            <div
-              className={`w-12 h-1 rounded-full bg-gradient-to-r ${section.color}`}
-            />
-
-            <h2 className="text-2xl font-semibold">{section.title}</h2>
-          </div>
-
-          {/* Skills Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
-            {section.data.map((skill, index) => (
-              <motion.div
-                key={index}
-                whileHover={{
-                  y: -8,
-                  scale: 1.05,
-                }}
-                whileTap={{
-                  scale: 0.96,
-                }}
-                className="group relative overflow-hidden
-                rounded-2xl
-                border border-white/10
-                bg-white/5
-                backdrop-blur-xl
-                p-6
-                flex flex-col
-                items-center
-                gap-4
-                transition-all"
-              >
-                {/* Hover Glow */}
-                <div
-                  className={`absolute inset-0 opacity-0 group-hover:opacity-100
-                  transition duration-500
-                  bg-gradient-to-r ${section.color}
-                  blur-3xl`}
-                />
-
-                {/* Icon */}
-                <div className="relative z-10 w-16 h-16 flex items-center justify-center">
-                  <img
-                    src={skill.img}
-                    alt={skill.name}
-                    className="w-14 h-14 object-contain transition-transform duration-300 group-hover:scale-110"
-                  />
-                </div>
-
-                {/* Name */}
-                <h3 className="relative z-10 font-semibold">{skill.name}</h3>
-
-                {/* Skill Level */}
-                {skill.level && (
-                  <span className="relative z-10 text-xs px-3 py-1 rounded-full bg-white/10 text-gray-300">
-                    {skill.level}
-                  </span>
-                )}
-              </motion.div>
-            ))}
-          </div>
+          <p className="paragraph mt-4 max-w-2xl mx-auto">
+            Technologies and tools I use to build modern web applications.
+          </p>
         </div>
-      ))}
+
+        {skillSections.map((section, sectionIndex) => (
+          <div key={sectionIndex} className="mb-16 last:mb-0">
+            {/* Category Heading */}
+            <div className="flex items-center gap-3 mb-8">
+              <div
+                className={`h-1 w-10 md:w-12 rounded-full bg-gradient-to-r ${section.color}`}
+              />
+
+              <h3 className="text-xl md:text-2xl font-semibold text-gray-900 dark:text-white">
+                {section.title}
+              </h3>
+            </div>
+
+            {/* Skills */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-5 md:gap-6">
+              {section.data.map((skill, index) => (
+                <motion.div
+                  key={index}
+                  initial={{
+                    opacity: 0,
+                    y: 30,
+                  }}
+                  whileInView={{
+                    opacity: 1,
+                    y: 0,
+                  }}
+                  viewport={{ once: true }}
+                  transition={{
+                    duration: 0.4,
+                    delay: index * 0.05,
+                  }}
+                  whileHover={{
+                    y: -8,
+                    scale: 1.05,
+                  }}
+                  whileTap={{
+                    scale: 0.96,
+                  }}
+                  className="card group relative overflow-hidden rounded-2xl p-4 md:p-6 flex flex-col items-center gap-4 cursor-pointer"
+                >
+                  {/* Hover Glow */}
+                  <div
+                    className={`absolute inset-0 opacity-0 group-hover:opacity-20 transition-all duration-500 bg-gradient-to-r ${section.color}`}
+                  />
+
+                  {/* Icon */}
+                  <div className="relative z-10 flex h-14 w-14 md:h-16 md:w-16 items-center justify-center">
+                    <img
+                      src={skill.img}
+                      alt={skill.name}
+                      className="h-12 w-12 md:h-14 md:w-14 object-contain transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6"
+                    />
+                  </div>
+
+                  {/* Skill Name */}
+                  <h3 className="relative z-10 text-center text-sm md:text-base font-semibold text-gray-900 dark:text-white">
+                    {skill.name}
+                  </h3>
+
+                  {/* Level */}
+                  {skill.level && (
+                    <span className="relative z-10 rounded-full bg-purple-500/10 px-3 py-1 text-xs font-medium text-purple-600 dark:text-purple-300">
+                      {skill.level}
+                    </span>
+                  )}
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
     </section>
   );
 }
