@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import React from "react";
 import Hero from "./component/Hero";
 import Navbar from "./component/Navbar";
 import CodingProfile from "./component/CodingProfile";
@@ -14,22 +13,9 @@ import Contacts from "./component/Contacts";
 import { Toaster } from "react-hot-toast";
 
 function App() {
-  const [page, setPage] = useState("hero");
-
-  const pages = {
-    hero: <Hero />,
-    about: <About />,
-    work: <Work />,
-    skills: <Skills />,
-    certification: <Certification />,
-    projects: <Projects />,
-    coding: <CodingProfile />,
-    education: <Education />,
-    contact: <Contacts />,
-  };
-
   return (
-    <div className="relative min-h-screen overflow-hidden bg-white text-gray-900 dark:bg-gray-950 dark:text-white transition-colors duration-300">
+    <div className="relative min-h-screen overflow-x-hidden bg-white text-gray-900 dark:bg-gray-950 dark:text-white transition-colors duration-300">
+      {/* Toast */}
       <Toaster
         position="top-right"
         toastOptions={{
@@ -43,40 +29,23 @@ function App() {
         }}
       />
 
-      <Navbar page={page} setPage={setPage} />
+      {/* Navbar */}
+      <Navbar />
 
+      {/* Main Content */}
       <main className="pt-28">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={page}
-            initial={{
-              opacity: 0,
-              y: 20,
-              scale: 0.98,
-              filter: "blur(8px)",
-            }}
-            animate={{
-              opacity: 1,
-              y: 0,
-              scale: 1,
-              filter: "blur(0px)",
-            }}
-            exit={{
-              opacity: 0,
-              y: -20,
-              scale: 1.02,
-              filter: "blur(8px)",
-            }}
-            transition={{
-              duration: 0.45,
-              ease: "easeInOut",
-            }}
-          >
-            {pages[page]}
-          </motion.div>
-        </AnimatePresence>
+        <Hero />
+        <About />
+        <Work />
+        <Skills />
+        <Certification />
+        <Projects />
+        <CodingProfile />
+        <Education />
+        <Contacts />
       </main>
 
+      {/* Footer */}
       <Footer />
     </div>
   );

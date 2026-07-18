@@ -141,6 +141,10 @@ export const nav = [
     label: "Projects",
   },
   {
+    id: "#certifications",
+    label: "Certifications",
+  },
+  {
     id: "#contact",
     label: "Contact",
   },

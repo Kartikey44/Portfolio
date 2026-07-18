@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { nav } from "../assets/data";
 import { RxHamburgerMenu, RxCross1 } from "react-icons/rx";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
@@ -6,78 +6,99 @@ import { FaArrowRight } from "react-icons/fa6";
 import { motion } from "framer-motion";
 import { useTheme } from "../context/ThemeContext";
 
-function Navbar({ page, setPage }) {
+function Navbar() {
   const [open, setOpen] = useState(false);
+  const [active, setActive] = useState("#hero");
+  const [scrolled, setScrolled] = useState(false);
 
   const { dark, setDark } = useTheme();
 
-  const active = "#" + page;
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 40);
 
-  const handleChangePage = (id) => {
+      const sections = nav.map((item) => document.querySelector(item.id));
+
+      sections.forEach((section) => {
+        if (!section) return;
+
+        const top = section.offsetTop - 120;
+        const bottom = top + section.offsetHeight;
+
+        if (window.scrollY >= top && window.scrollY < bottom) {
+          setActive(`#${section.id}`);
+        }
+      });
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    handleScroll();
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const handleScroll = (id) => {
     setOpen(false);
-    setPage(id.replace("#", ""));
+
+    document.querySelector(id)?.scrollIntoView({
+      behavior: "smooth",
+    });
   };
 
   return (
     <>
       {/* Navbar */}
       <motion.nav
-        initial={{ y: -70, opacity: 0 }}
+        initial={{ y: -80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.5 }}
-        className="glass fixed top-5 left-1/2 z-50 w-[95%] max-w-7xl -translate-x-1/2 rounded-3xl px-6 py-4 shadow-[0_8px_40px_rgba(0,0,0,.15)]"
+        transition={{ duration: 0.6 }}
+        className={`fixed left-1/2 top-4 -translate-x-1/2 z-50 w-[96%] max-w-7xl transition-all duration-500 ${scrolled ? "top-3 py-3 px-4 sm:px-6 lg:px-8 rounded-2xl glass shadow-2xl" : "top-4 py-4 px-4 sm:px-6 lg:px-8 rounded-3xl glass"}`}
       >
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <motion.button
+          <motion.a
             whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.96 }}
-            onClick={() => handleChangePage("#hero")}
-            className="bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400 bg-clip-text text-3xl font-extrabold text-transparent"
+            href="#hero"
+            onClick={(e) => {
+              e.preventDefault();
+              handleScroll("#hero");
+            }}
+            className="text-3xl font-extrabold bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400 bg-clip-text text-transparent"
           >
             Kartikey.
-          </motion.button>
+          </motion.a>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center gap-10">
+          <div className="hidden md:flex items-center gap-8">
             {nav.map((item, index) => (
-              <motion.button
+              <a
                 key={index}
-                whileHover={{ y: -2 }}
-                whileTap={{ scale: 0.97 }}
-                onClick={() => handleChangePage(item.id)}
-                className={`relative pb-1 cursor-pointer text-[15px] font-medium transition-colors duration-300 ${
-                  active === item.id
-                    ? "text-purple-500"
-                    : "text-gray-700 dark:text-gray-300 hover:text-purple-500"
-                }`}
+                href={item.id}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleScroll(item.id);
+                }}
+                className={`relative text-[15px] font-medium transition-all duration-300 ${active === item.id ? "text-purple-500" : "text-gray-700 dark:text-gray-300 hover:text-purple-500"}`}
               >
                 {item.label}
 
-                {active === item.id && (
-                  <motion.span
-                    layoutId="navbar-indicator"
-                    transition={{
-                      type: "spring",
-                      stiffness: 380,
-                      damping: 30,
-                    }}
-                    className="absolute left-0 -bottom-2 h-[3px] w-full rounded-full bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400"
-                  />
-                )}
-              </motion.button>
+                <span
+                  className={`absolute left-0 -bottom-2 h-[2px] rounded-full bg-gradient-to-r from-purple-500 to-pink-500 transition-all duration-300 ${active === item.id ? "w-full" : "w-0 group-hover:w-full"}`}
+                ></span>
+              </a>
             ))}
           </div>
 
-          {/* Right Side */}
+          {/* Right */}
           <div className="flex items-center gap-3">
             {/* Resume */}
             <motion.a
-              whileHover={{ scale: 1.03, y: -2 }}
-              whileTap={{ scale: 0.97 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               href="/resume.pdf"
               download="Kartikey_Saraswat_Resume.pdf"
-              className="btn-primary hidden items-center gap-2 px-5 py-2.5 lg:flex"
+              className="hidden lg:flex btn-primary items-center gap-2 px-5 py-2.5"
             >
               Resume
               <FaArrowRight size={14} />
@@ -85,10 +106,10 @@ function Navbar({ page, setPage }) {
 
             {/* Theme */}
             <motion.button
-              whileHover={{ scale: 1.08 }}
-              whileTap={{ scale: 0.92 }}
+              whileHover={{ rotate: 180 }}
+              transition={{ duration: 0.4 }}
               onClick={() => setDark(!dark)}
-              className="glass flex h-11 w-11 items-center justify-center rounded-full hover:border-purple-500 transition-all duration-300"
+              className="h-11 w-11 rounded-full glass flex items-center justify-center hover:border-purple-500 transition-all"
             >
               {dark ? (
                 <MdLightMode size={22} className="text-yellow-400" />
@@ -101,10 +122,9 @@ function Navbar({ page, setPage }) {
             </motion.button>
 
             {/* Hamburger */}
-            <motion.button
-              whileTap={{ scale: 0.9 }}
+            <button
               onClick={() => setOpen(!open)}
-              className="glass flex h-11 w-11 items-center justify-center rounded-full md:hidden"
+              className="md:hidden h-11 w-11 rounded-full glass flex items-center justify-center"
             >
               {open ? (
                 <RxCross1 size={24} className="text-gray-900 dark:text-white" />
@@ -114,97 +134,70 @@ function Navbar({ page, setPage }) {
                   className="text-gray-900 dark:text-white"
                 />
               )}
-            </motion.button>
+            </button>
           </div>
         </div>
       </motion.nav>
       {/* Overlay */}
-      <motion.div
-        initial={false}
-        animate={{
-          opacity: open ? 1 : 0,
-          visibility: open ? "visible" : "hidden",
-        }}
-        transition={{ duration: 0.25 }}
+      <div
         onClick={() => setOpen(false)}
-        className="fixed inset-0 z-40 bg-black/40 backdrop-blur-md md:hidden"
+        className={`fixed inset-0 z-40 bg-black/40 backdrop-blur-sm transition-all duration-300 ${open ? "opacity-100 visible" : "opacity-0 invisible"}`}
       >
         {/* Mobile Menu */}
         <motion.div
           initial={false}
           animate={{
+            y: open ? 0 : -500,
             opacity: open ? 1 : 0,
-            y: open ? 0 : -20,
-            scale: open ? 1 : 0.97,
           }}
-          transition={{
-            duration: 0.35,
-            ease: [0.22, 1, 0.36, 1],
-          }}
+          transition={{ duration: 0.35 }}
           onClick={(e) => e.stopPropagation()}
-          className="glass absolute left-1/2 top-5 w-[92%] max-w-md -translate-x-1/2 rounded-3xl border border-white/10 p-7 shadow-[0_20px_60px_rgba(0,0,0,.25)]"
+          className="glass absolute top-0 left-0 w-full rounded-b-3xl shadow-2xl border-b border-white/10"
         >
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col items-center pt-24 pb-12">
             {nav.map((item, index) => (
-              <motion.button
+              <motion.a
                 key={index}
-                initial={{ opacity: 0, x: -15 }}
+                initial={{ opacity: 0, x: -30 }}
                 animate={{
                   opacity: open ? 1 : 0,
-                  x: open ? 0 : -15,
+                  x: open ? 0 : -30,
                 }}
                 transition={{
-                  delay: index * 0.05,
-                  duration: 0.25,
+                  delay: index * 0.08,
                 }}
-                whileHover={{
-                  x: 6,
-                  backgroundColor: "rgba(168,85,247,.08)",
+                href={item.id}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleScroll(item.id);
                 }}
-                whileTap={{
-                  scale: 0.98,
-                }}
-                onClick={() => handleChangePage(item.id)}
-                className={`relative flex items-center rounded-xl px-5 py-4 text-left text-lg font-medium transition-all duration-300 ${
-                  active === item.id
-                    ? "bg-purple-500/10 text-purple-500"
-                    : "text-gray-700 dark:text-gray-300 hover:text-purple-500"
-                }`}
+                className={`relative py-4 text-lg font-semibold transition-all duration-300 ${active === item.id ? "text-purple-500" : "text-gray-700 dark:text-gray-300 hover:text-purple-500"}`}
               >
+                {item.label}
+
                 {active === item.id && (
                   <motion.div
-                    layoutId="mobileIndicator"
-                    transition={{
-                      type: "spring",
-                      stiffness: 380,
-                      damping: 30,
-                    }}
-                    className="absolute left-0 top-1/2 h-8 w-1 -translate-y-1/2 rounded-full bg-gradient-to-b from-purple-500 via-pink-500 to-cyan-400"
+                    layoutId="mobileActive"
+                    className="absolute left-0 right-0 -bottom-1 h-[2px] rounded-full bg-gradient-to-r from-purple-500 to-pink-500"
                   />
                 )}
-
-                {item.label}
-              </motion.button>
+              </motion.a>
             ))}
 
+            {/* Resume Button */}
             <motion.a
-              whileHover={{
-                scale: 1.03,
-                y: -2,
-              }}
-              whileTap={{
-                scale: 0.97,
-              }}
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.96 }}
               href="/resume.pdf"
               download="Kartikey_Saraswat_Resume.pdf"
-              className="btn-primary mt-5 flex items-center justify-center gap-2 rounded-xl py-3"
+              className="btn-primary mt-8 flex items-center gap-2 px-6 py-3"
             >
-              Resume
+              Download Resume
               <FaArrowRight size={15} />
             </motion.a>
           </div>
         </motion.div>
-      </motion.div>
+      </div>
     </>
   );
 }
