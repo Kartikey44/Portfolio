@@ -170,9 +170,9 @@ function Hero() {
           initial={{ opacity: 0, x: 30 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7 }}
-          className="flex justify-center lg:justify-end order-first lg:order-last"
+          className="order-first lg:order-last flex justify-center items-center w-full"
         >
-          <div className="relative group">
+          <div className="relative group flex justify-center items-center w-full">
             {/* Glow */}
             <div
               className="
@@ -198,22 +198,12 @@ function Hero() {
                 duration: 4,
                 ease: "easeInOut",
               }}
-              className="card relative rounded-[2rem] p-5 sm:p-6 border border-purple-500/20 hover:border-purple-500/40 hover:shadow-[0_15px_40px_rgba(168,85,247,.35)] transition-all duration-500"
+              className="card relative w-full max-w-105 rounded-4xl p-5 sm:p-6 border border-purple-500/20 hover:border-purple-500/40 hover:shadow-[0_15px_40px_rgba(168,85,247,.35)] transition-all duration-500"
             >
               <img
                 src={profile.profileImage}
                 alt={profile.name}
-                className="
-                  w-44 h-44
-                  sm:w-56 sm:h-56
-                  md:w-64 md:h-64
-                  lg:w-72 lg:h-72
-                  rounded-full
-                  object-cover
-                  border-4
-                  border-purple-500/40
-                  shadow-2xl
-                "
+                className="mx-auto w-44 h-44 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-72 lg:h-72 rounded-full object-cover border-4 border-purple-500/40 shadow-2xl"
               />
 
               <div className="mt-5 text-center">

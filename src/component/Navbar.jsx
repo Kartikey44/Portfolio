@@ -1,35 +1,73 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { nav } from "../assets/data";
 import { RxHamburgerMenu, RxCross1 } from "react-icons/rx";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
+import { FaArrowRight } from "react-icons/fa6";
+import { motion } from "framer-motion";
 import { useTheme } from "../context/ThemeContext";
 
 function Navbar() {
   const [open, setOpen] = useState(false);
+  const [active, setActive] = useState("#hero");
+  const [scrolled, setScrolled] = useState(false);
+
   const { dark, setDark } = useTheme();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 40);
+
+      const sections = nav.map((item) => document.querySelector(item.id));
+
+      sections.forEach((section) => {
+        if (!section) return;
+
+        const top = section.offsetTop - 120;
+        const bottom = top + section.offsetHeight;
+
+        if (window.scrollY >= top && window.scrollY < bottom) {
+          setActive(`#${section.id}`);
+        }
+      });
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    handleScroll();
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const handleScroll = (id) => {
     setOpen(false);
 
-    setTimeout(() => {
-      document.querySelector(id)?.scrollIntoView({
-        behavior: "smooth",
-      });
-    }, 250);
+    document.querySelector(id)?.scrollIntoView({
+      behavior: "smooth",
+    });
   };
 
   return (
     <>
       {/* Navbar */}
-      <section className="glass fixed top-5 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-7xl rounded-2xl px-6 py-4">
+      <motion.nav
+        initial={{ y: -80, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.6 }}
+        className={`fixed left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-7xl transition-all duration-500 ${scrolled ? "top-3 py-3 px-6 rounded-2xl glass shadow-2xl" : "top-5 py-4 px-6 rounded-3xl glass"}`}
+      >
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <a
+          <motion.a
+            whileHover={{ scale: 1.05 }}
             href="#hero"
-            className="text-3xl font-extrabold bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent"
+            onClick={(e) => {
+              e.preventDefault();
+              handleScroll("#hero");
+            }}
+            className="text-3xl font-extrabold bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400 bg-clip-text text-transparent"
           >
             Kartikey.
-          </a>
+          </motion.a>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-8">
@@ -41,75 +79,124 @@ function Navbar() {
                   e.preventDefault();
                   handleScroll(item.id);
                 }}
-                className="nav-link group"
+                className={`relative text-[15px] font-medium transition-all duration-300 ${active === item.id ? "text-purple-500" : "text-gray-700 dark:text-gray-300 hover:text-purple-500"}`}
               >
                 {item.label}
 
-                <span className="absolute left-0 -bottom-1 h-[2px] w-0 bg-gradient-to-r from-purple-500 to-pink-500 transition-all duration-300 group-hover:w-full" />
+                <span
+                  className={`absolute left-0 -bottom-2 h-[2px] rounded-full bg-gradient-to-r from-purple-500 to-pink-500 transition-all duration-300 ${active === item.id ? "w-full" : "w-0 group-hover:w-full"}`}
+                ></span>
               </a>
             ))}
           </div>
 
-          {/* Right Side */}
+          {/* Right */}
           <div className="flex items-center gap-3">
-            {/* Theme Toggle */}
-            <button
+            {/* Resume */}
+            <motion.a
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              href="/resume.pdf"
+              download="Kartikey_Saraswat_Resume.pdf"
+              className="hidden lg:flex btn-primary items-center gap-2 px-5 py-2.5"
+            >
+              Resume
+              <FaArrowRight size={14} />
+            </motion.a>
+
+            {/* Theme */}
+            <motion.button
+              whileHover={{ rotate: 180 }}
+              transition={{ duration: 0.4 }}
               onClick={() => setDark(!dark)}
-              className="h-10 w-10 rounded-full flex items-center justify-center bg-gray-200 dark:bg-gray-800 hover:scale-110 transition-all"
+              className="h-11 w-11 rounded-full glass flex items-center justify-center hover:border-purple-500 transition-all"
             >
               {dark ? (
                 <MdLightMode size={22} className="text-yellow-400" />
               ) : (
-                <MdDarkMode size={22} className="text-gray-800" />
+                <MdDarkMode
+                  size={22}
+                  className="text-gray-800 dark:text-white"
+                />
               )}
-            </button>
+            </motion.button>
 
-            {/* Mobile Menu */}
-            <button onClick={() => setOpen(!open)} className="md:hidden">
+            {/* Hamburger */}
+            <button
+              onClick={() => setOpen(!open)}
+              className="md:hidden h-11 w-11 rounded-full glass flex items-center justify-center"
+            >
               {open ? (
-                <RxCross1 size={28} className="text-gray-900 dark:text-white" />
+                <RxCross1 size={24} className="text-gray-900 dark:text-white" />
               ) : (
                 <RxHamburgerMenu
-                  size={30}
+                  size={26}
                   className="text-gray-900 dark:text-white"
                 />
               )}
             </button>
           </div>
         </div>
-      </section>
-
+      </motion.nav>
       {/* Overlay */}
       <div
         onClick={() => setOpen(false)}
-        className={`fixed inset-0 bg-black/40 backdrop-blur-sm transition-all duration-300 z-40 ${
-          open ? "opacity-100 visible" : "opacity-0 invisible"
-        }`}
+        className={`fixed inset-0 z-40 bg-black/40 backdrop-blur-sm transition-all duration-300 ${open ? "opacity-100 visible" : "opacity-0 invisible"}`}
       >
         {/* Mobile Menu */}
-        <div
+        <motion.div
+          initial={false}
+          animate={{
+            y: open ? 0 : -500,
+            opacity: open ? 1 : 0,
+          }}
+          transition={{ duration: 0.35 }}
           onClick={(e) => e.stopPropagation()}
-          className={`glass fixed top-0 left-0 w-full rounded-b-3xl shadow-xl transition-all duration-300 ${
-            open ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"
-          }`}
+          className="glass absolute top-0 left-0 w-full rounded-b-3xl shadow-2xl border-b border-white/10"
         >
-          <ul className="flex flex-col items-center gap-8 py-20">
+          <div className="flex flex-col items-center pt-24 pb-12">
             {nav.map((item, index) => (
-              <li key={index}>
-                <a
-                  href={item.id}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleScroll(item.id);
-                  }}
-                  className="text-lg font-medium text-gray-700 dark:text-white hover:text-purple-500 transition"
-                >
-                  {item.label}
-                </a>
-              </li>
+              <motion.a
+                key={index}
+                initial={{ opacity: 0, x: -30 }}
+                animate={{
+                  opacity: open ? 1 : 0,
+                  x: open ? 0 : -30,
+                }}
+                transition={{
+                  delay: index * 0.08,
+                }}
+                href={item.id}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleScroll(item.id);
+                }}
+                className={`relative py-4 text-lg font-semibold transition-all duration-300 ${active === item.id ? "text-purple-500" : "text-gray-700 dark:text-gray-300 hover:text-purple-500"}`}
+              >
+                {item.label}
+
+                {active === item.id && (
+                  <motion.div
+                    layoutId="mobileActive"
+                    className="absolute left-0 right-0 -bottom-1 h-[2px] rounded-full bg-gradient-to-r from-purple-500 to-pink-500"
+                  />
+                )}
+              </motion.a>
             ))}
-          </ul>
-        </div>
+
+            {/* Resume Button */}
+            <motion.a
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.96 }}
+              href="/resume.pdf"
+              download="Kartikey_Saraswat_Resume.pdf"
+              className="btn-primary mt-8 flex items-center gap-2 px-6 py-3"
+            >
+              Download Resume
+              <FaArrowRight size={15} />
+            </motion.a>
+          </div>
+        </motion.div>
       </div>
     </>
   );
