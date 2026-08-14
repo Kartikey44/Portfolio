@@ -395,13 +395,13 @@ export const projects = [
 
     links: [
       {
-        label: "Coming Soon",
-        url: "#",
+        label: "Live Demo",
+        url: "https://shop-now-woad.vercel.app/",
         icon: FaArrowUpRightFromSquare,
       },
       {
         label: "GitHub",
-        url: "#",
+        url: "https://github.com/Kartikey44/ShopNow",
         icon: LuGithub,
       },
     ],
