@@ -46,8 +46,7 @@ function Hero() {
             transition={{ duration: 0.5 }}
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-purple-500/30 bg-purple-500/10 text-purple-600 dark:text-purple-300 text-sm font-medium"
           >
-            <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-            Open to Internships
+          
           </motion.div>
 
           {/* Heading */}
@@ -210,16 +209,6 @@ function Hero() {
                 <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 dark:text-white">
                   {profile.name}
                 </h2>
-
-                <div className="mt-4 flex items-center justify-center gap-2 text-green-500 font-medium">
-                  <span className="relative flex h-3 w-3">
-                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-500 opacity-75"></span>
-
-                    <span className="relative inline-flex h-3 w-3 rounded-full bg-green-500"></span>
-                  </span>
-                  Available for Internship
-                </div>
-
                 <p className="mt-3 text-sm text-gray-600 dark:text-gray-400">
                   📍 {profile.location}
                 </p>
